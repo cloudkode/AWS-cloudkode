@@ -1,0 +1,20 @@
+Create public and private keys on a linux machine 
+----
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+>>> You will be prompted to specify a file to save the key: Press Enter to save the key in the default location (~/.ssh/id_rsa).
+The private key will be saved as id_rsa, and the public key as id_rsa.pub in the .ssh directory.
+
+access public instance:
+-----
+ssh ec2-user@ public IP of jump host
+
+then access private instance from jumper by:
+---
+ssh -i /home/ec2-user/.ssh/jumper_to_private_key.pem ec2-user@ ip of private instance
+
+Creating file and push it to s3 on the private instance:
+====
+echo "This is a test file" > testfile.txt
+aws s3 cp testfile.txt s3://cloudkode1-s3/
+
